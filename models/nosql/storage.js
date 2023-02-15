@@ -1,20 +1,22 @@
-const  mongoose=require("mongoose") 
+const mongoose=require("mongoose")
 
-const StorgeScheme=new mongoose.Schema(
-    {
-    url:{
-        type:String,
-    },
-    filename:{
-        type:Number,
-    },
-    
+const StorageScheme = new mongoose.Schema(
 
+
+{   
+        url:{
+            type:String
+        },
+        filename:{
+            type:Number
+        }
+     
 },
-{
-    timestamps: true,
-    versionkey: true,
-}
-)
 
-module.exports = mongoose.model("storages", StorgeScheme);
+{
+        timestamps:true, // TODO createdAt, updateAt
+        versionkey:false
+    }
+);
+
+module.exports=mongoose.model("Storages",StorageScheme)

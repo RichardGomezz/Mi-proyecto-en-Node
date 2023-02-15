@@ -1,13 +1,15 @@
-const express = require("express");
-const router = express.Router();
-const { getItem } =require("../controllers/tracks")
-const { getItems } =require("../controllers/tracks")
-const { createItem } =require("../controllers/tracks")
-
-router.get("/",  getItems)
-router.get("/",  getItem)
-router.post("/", createItem)
+const express =require("express");
+const router= express.Router();
+const {getItems,getItem,createItem}=require ("../controllers/tracks")
 
 
 
-module.exports= router
+//TODO /tracks GET,POST,DELETE,PUT
+
+router.get("/",getItems);
+
+router.post("/",createItem);
+
+
+
+module.exports=router

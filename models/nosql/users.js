@@ -1,32 +1,32 @@
-const  mongoose=require("mongoose") 
+const mongoose=require("mongoose")
 
-const UserScheme=new mongoose.Schema(
-    {
-    name:{
-        type:String,
-    },
-    age:{
-        type:Number,
-    },
-    
-     email:{
-        Type:String
-    },
-    artist:{
+const UserScheme = new mongoose.Schema(
+
+
+{   
         name:{
             type:String
-        }
-        
-    },
-    role:{
-        type: ["user", "admin"],
-        default: "user",
-    },
+        },
+        age:{
+            type:Number
+        },
+        email:{
+            type:String,
+            unique:true
+        },
+        password:{
+            type:String
+        },
+        role:{
+        type:["user", "admin"],
+        default:"user"
+        },
 },
-{
-    timestamps: true,
-    versionkey: true,
-}
-)
 
-module.exports = mongoose.model("users", UserScheme);
+{
+        timestamps:true, // TODO createdAt, updateAt
+        versionkey:false
+    }
+);
+
+module.exports=mongoose.model("users",UserScheme)
