@@ -10,8 +10,7 @@ const UserScheme=new mongoose.Schema(
     },
     
      email:{
-        Type:String,
-        unique:true,
+        Type:String
     },
     artist:{
         name:{
