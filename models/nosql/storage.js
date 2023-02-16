@@ -8,15 +8,15 @@ const StorageScheme = new mongoose.Schema(
             type:String
         },
         filename:{
-            type:Number
-        }
+            type:String
+        },
      
 },
 
 {
         timestamps:true, // TODO createdAt, updateAt
-        versionkey:false
+        versionkey:false,
     }
-);
+)
 
-module.exports=mongoose.model("Storages",StorageScheme)
+module.exports=mongoose.model("Storage", StorageScheme);

@@ -1,4 +1,5 @@
 const {storageModel} = require("../models")
+const PUBLIC_URL = process.env.PUBLIC_URL;
 
 /**
  * obtenes lista de la base de datos 
@@ -8,8 +9,7 @@ const {storageModel} = require("../models")
 
 const getItems = async (req, res) => {
      const data = await storageModel.find({});
-
-    res.send({data})};
+     res.send({data})};
 
 /**
  * obtener un detalle
@@ -26,9 +26,13 @@ const getItem = (req, res) => {};
  */
 
 const createItem = async (req, res) => {
-const { body } = req
-console.log(body)
-const data = await storageModel.create(body)
+const { body, file } = req
+console.log(file)
+const fileData = {
+    filename: file.filename,
+    url:`${PUBLIC_URL}/${file.filename}`
+}
+const data = await storageModel.create(fileData)
 res.send({data})
 };
 
