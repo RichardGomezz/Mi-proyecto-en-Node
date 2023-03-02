@@ -1,4 +1,6 @@
-const {storageModel} = require("../models")
+const { matchedData } = require("express-validator");
+const {storageModel, tracksModel} = require("../models");
+const { handleHttpError } = require("../utils/handleError");
 
 /**
  * obtenes lista de la base de datos 
@@ -7,9 +9,18 @@ const {storageModel} = require("../models")
  */
 
 const getItems = async (req, res) => {
-     const data = await storageModel.find({});
 
-    res.send({data})};
+   try{
+    const data = await tracksModel.find({});
+     res.send({data})
+
+   }catch(e){
+    handleHttpError(res, 'ERROR_GET_ITEMS')
+   }
+
+     
+    
+    };
 
 /**
  * obtener un detalle
@@ -17,7 +28,11 @@ const getItems = async (req, res) => {
  * @param {*} res 
  */
 
-const getItem = (req, res) => {};
+const getItem = async (req, res) => {
+   
+
+  };
+
 
 /**
  * insertar un registro 
@@ -26,10 +41,15 @@ const getItem = (req, res) => {};
  */
 
 const createItem = async (req, res) => {
-const { body } = req
-console.log(body)
-const data = await storageModel.create(body)
-res.send({data})
+
+    try{
+
+       const body= matchedData(req)
+       const data = await tracksModel.create(body)
+       res.send({data});
+       }catch(e){
+        handleHttpError(res, 'ERROR_CREATE_ITEMS');
+       }
 };
 
 /**
@@ -38,7 +58,7 @@ res.send({data})
  * @param {*} res 
  */
 
-const updateItem = (req, res) => {};
+const updateItem = async (req, res) => {};
 
 /**
  * eliminar un registro 
@@ -46,6 +66,6 @@ const updateItem = (req, res) => {};
  * @param {*} res 
  */
 
-const deleteItem = (req, res) => {};
+const deleteItem = async (req, res) => {};
 
 module.exports = {getItems, getItem, createItem, updateItem, deleteItem}
